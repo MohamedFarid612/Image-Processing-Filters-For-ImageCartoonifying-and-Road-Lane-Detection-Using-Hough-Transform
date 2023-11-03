@@ -2,6 +2,23 @@
 
 > This readme file is a summary of the project. For more details, please refer to the notebooks.
 
+## Table of Contents
+- [Image Cartoonifying & Road Lane Detection](#image-cartoonifying--road-lane-detection)
+    - [Part 1](#part-1)
+    - [Introduction](#introduction)
+    - [Steps](#steps)
+        - [Applying Median Filter](#applying-median-filter)
+        - [Applying Laplacian Filter](#applying-laplacian-filter)
+        - [Applying Thresholding & Inverting Image](#applying-thresholding--inverting-image)
+        - [Applying Bilateral Filter](#applying-bilateral-filter)
+        - [Adding all together](#adding-all-together)
+    - [Road Lane Detection](#road-lane-detection)
+        - [Overview](#overview)
+        - [Hough Transform Steps](#hough-transform-steps)
+        - [Algorithm](#algorithm)
+    - [Authors](#authors)
+    
+
 
 ## Part 1
 ## Introduction
@@ -42,3 +59,45 @@
 ### Adding all together
 - Our code essentially takes the input image, applies a binary threshold to create a mask, and then replaces the pixel values in the resulting mask with the corresponding pixel values from the input image, resulting in a modified black image where only the pixels that satisfy the specified threshold are preserved.
 ![Alt text](images/2.png)
+
+## Road Lane Detection
+This Jupyter notebook, `Hough.ipynb`, demonstrates the use of the Hough Transform for image processing tasks, such as line detection in road lanes.
+
+![Alt text](images/road_lanes.png)
+
+### Overview
+
+The Hough Transform is a feature extraction technique used in image analysis, computer vision, and digital image processing. It's particularly used for detecting imperfect instances of objects within a certain class of shapes, with circles and lines being the most common shapes.
+
+### Hough Transform Steps
+
+#### 1. Edge Detection
+
+The Hough Transform is most commonly used for detecting lines in an image, so the first step is to apply an edge detection algorithm, such as the Canny edge detector, to the image. The output of the Canny edge detector is a binary image with white pixels tracing out the detected edges and black pixels everywhere else.
+
+#### 2. Mapping of Edge Points to the Hough Space and Accumulator
+
+The next step is to map the edge points from the image space to the Hough space and accumulator. The Hough space is a parameter space defined by the parameters of the object we're trying to detect. In the case of lines, the Hough space is defined by the two parameters of a line: slope and intercept. The accumulator is a 2D array whose dimensions are determined by the range of values for the parameters. Each cell in the accumulator represents a possible line in the image space. The value of each cell is the number of edge points that could be part of the line represented by that cell.
+
+#### 3. Interpretation of the Accumulator to Yield Lines
+
+The final step is to interpret the accumulator to yield lines. The cells in the accumulator with the highest values represent the lines that are most likely to be present in the image. The threshold for determining whether a cell represents a line is determined by the minimum number of edge points needed to detect a line. For each cell that meets the threshold, the corresponding line is drawn on the original image.
+
+### Algorithm
+```
+1. Read the image from the file "images/street.png" and convert its color from BGR to RGB.
+2. Apply a median blur to the image to reduce noise.
+3. Convert the blurred image to grayscale.
+4. Apply the Canny edge detection algorithm to the grayscale image.
+5. Extract the region of interest from the image. This region is defined as the lower half of the image, excluding the rightmost 120 pixels.
+6. Initialize the Hough Transform accumulator. This is a 2D array where each cell represents a possible line in the image. The size of the accumulator is determined by the maximum possible value of rho (the distance from the origin to the line) and the range of theta (the angle of the line).
+7. For each non-zero pixel in the region of interest, calculate its rho and theta values for each possible theta, and increment the corresponding cell in the accumulator.
+8. Apply non-maximum suppression to the accumulator to find the local maxima. These represent the most likely lines in the image.
+9. For each local maximum, calculate the parameters of the corresponding line (slope and intercept) and draw the line on the original image.
+```
+
+## Authors
+- [Yousef Kotp](https://www.github.com/yousefkotp)
+- [Mohammed Farid](https://www.github.com/MohamedFarid612)
+- [Adham Mohammed](https://www.github.com/adhammohamed1)
+
