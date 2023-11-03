@@ -15,9 +15,12 @@
     - [Road Lane Detection](#road-lane-detection)
         - [Overview](#overview)
         - [Hough Transform Steps](#hough-transform-steps)
+            - [1. Edge Detection](#1-edge-detection)
+            - [2. Mapping of Edge Points to the Hough Space and Accumulator](#2-mapping-of-edge-points-to-the-hough-space-and-accumulator)
+            - [3. Interpretation of the Accumulator to Yield Lines](#3-interpretation-of-the-accumulator-to-yield-lines)
         - [Algorithm](#algorithm)
     - [Authors](#authors)
-    
+
 
 
 ## Part 1
