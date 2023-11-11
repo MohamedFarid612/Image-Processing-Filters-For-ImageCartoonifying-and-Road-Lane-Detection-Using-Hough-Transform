@@ -43,7 +43,7 @@
 ![Alt text](images/image-2.png)
 
 ### Applying Thresholding & Inverting Image
-- This process effectively applies a binary thresholding operation to the Laplacian image, where pixels with Laplacian values below a certain threshold (in this case, 10) are considered as non-edge regions and set to black, while pixels with Laplacian values above or equal to the threshold are considered as edge regions and remain white. The resulting thresholded image is then displayed with a title indicating its purpose![Alt text](images/3.png).![Alt text](images/1.png)
+- This process effectively applies a binary thresholding operation to the Laplacian image, where pixels with Laplacian values below a certain threshold (in this case, 20) are considered as non-edge regions and set to black, while pixels with Laplacian values above or equal to the threshold are considered as edge regions and remain white. The resulting thresholded image is then displayed with a title indicating its purpose![Alt text](images/3.png).![Alt text](images/1.png)
 
 
 ### Applying Bilateral Filter
